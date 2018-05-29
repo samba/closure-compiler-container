@@ -5,7 +5,7 @@ ARG DATE=20180506
 ENV DATE=${DATE}
 ENV URL_TEMPLATE="http://dl.google.com/closure-compiler/compiler-${DATE}.tar.gz"
 
-RUN apk add --no-cache openjdk8-jre wget 
+RUN apk add --no-cache openjdk8-jre wget make 
 
 RUN mkdir -p /usr/local /tmp/closure/extract
 
