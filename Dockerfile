@@ -13,7 +13,7 @@ COPY scripts/closure-compiler.sh /usr/local/bin/closure-compiler
 RUN chmod +x /usr/local/bin/closure-compiler
 
 
-RUN wget -O /tmp/closure.tar.gz  "${URL_TEMPLATE}" && \
+RUN wget -q -O /tmp/closure.tar.gz  "${URL_TEMPLATE}" && \
     mkdir -p /tmp/closure/extract && \
     tar -xvf /tmp/closure.tar.gz -C /tmp/closure/extract && \
     cp -v /tmp/closure/extract/closure-compiler*.jar /usr/local/closure-compiler.jar && \
