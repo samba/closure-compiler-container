@@ -7,13 +7,17 @@ ENV URL_TEMPLATE="http://dl.google.com/closure-compiler/compiler-${DATE}.tar.gz"
 
 RUN apk add --no-cache openjdk8-jre wget 
 
-RUN wget -O /tmp/closure.tar.gz  "${URL_TEMPLATE}" && \
-    mkdir -p /tmp/closure/extract && \
-    tar -xvf /tmp/closure.tar.gz -C /tmp/closure/extract && \
-    rm -v /tmp/closure.tar.gz
-
+RUN mkdir -p /usr/local /tmp/closure/extract
 
 COPY scripts/closure-compiler.sh /usr/local/bin/closure-compiler
 RUN chmod +x /usr/local/bin/closure-compiler
 
-ENTRYPOINT /usr/local/bin/closure-compiler
+
+RUN wget -O /tmp/closure.tar.gz  "${URL_TEMPLATE}" && \
+    mkdir -p /tmp/closure/extract && \
+    tar -xvf /tmp/closure.tar.gz -C /tmp/closure/extract && \
+    cp -v /tmp/closure/extract/closure-compiler*.jar /usr/local/closure-compiler.jar && \
+    rm -rvf /tmp/closure.tar.gz /tmp/closure/extract
+
+
+ENTRYPOINT ["java", "-jar", "/usr/local/closure-compiler.jar"] 
