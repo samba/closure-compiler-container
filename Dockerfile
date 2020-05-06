@@ -1,11 +1,11 @@
 FROM alpine:latest
 
-ARG DATE=20180506
+ARG DATE=20200406
 
 ENV DATE=${DATE}
 ENV URL_TEMPLATE="http://dl.google.com/closure-compiler/compiler-${DATE}.tar.gz"
 
-RUN apk add --no-cache openjdk8-jre wget make 
+RUN apk add --no-cache openjdk8-jre wget make
 
 RUN mkdir -p /usr/local /tmp/closure/extract
 
@@ -20,4 +20,4 @@ RUN wget -q -O /tmp/closure.tar.gz  "${URL_TEMPLATE}" && \
     rm -rvf /tmp/closure.tar.gz /tmp/closure/extract
 
 
-ENTRYPOINT ["java", "-jar", "/usr/local/closure-compiler.jar"] 
+ENTRYPOINT ["java", "-jar", "/usr/local/closure-compiler.jar"]
