@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ARG DATE=20200406
+ARG DATE=20180506
 
 ENV DATE=${DATE}
 ENV URL_TEMPLATE="http://dl.google.com/closure-compiler/compiler-${DATE}.tar.gz"
